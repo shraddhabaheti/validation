@@ -6,6 +6,110 @@
   height: 40vmin;
   pointer-events: none;
 }
+#id{
+   color: #1145ad;
+  
+  
+}
+#id1{
+  color: aqua;
+
+}
+#id2{
+  color: #1145ad;
+  font-size: 43px;
+  margin-top: 20px;
+  font-family: 'Times New Roman', Times, serif;
+}
+.label{
+  color:#1145ad; 
+  
+  font-size: 20px;
+  display: block;
+  
+  font-family:'Times New Roman', Times, serif;
+  font-style: Bold;
+  margin-right: 280px;
+  padding: 5px;
+}
+.label1{
+  color:#1145ad; 
+  
+  font-size: 20px;
+  display: block;
+  margin-right: 195px;
+  font-family:'Times New Roman', Times, serif;
+  font-style: Bold;
+  
+  padding: 5px;
+}
+.label2{
+  color:#1145ad; 
+  
+  font-size: 20px;
+  display: block;
+  margin-right: 250px;
+  font-family:'Times New Roman', Times, serif;
+  font-style: Bold;
+  
+  padding: 5px;
+
+}
+.label3{
+  color:#1145ad; 
+  
+  font-size: 35px;
+  display: block;
+  
+  font-family:'Times New Roman', Times, serif;
+  font-style: Bold;
+  
+  padding: 5px;
+}
+#input{  
+  border-radius: 25px;
+  padding:3px;
+  height: 30px;
+  width: 340px;
+  margin-left:12px;
+  
+  border: 1px solid black;
+  padding: 5px;
+  margin: 2px;
+}
+.invalid-feedback{
+  color: red;
+  font-family: 'Times New Roman', Times, serif;
+  font-size:15px;
+  margin-right: 120px;
+}
+.btn{
+  color:#1145ad; 
+  background-color: aqua;
+  
+  border-radius: 25px;
+  font-size: 20px;
+  font-family: 'Times New Roman', Times, serif;
+  display: block;
+  padding: 5px;
+  width: 10px;
+  width:340px;
+
+  margin: 10px auto;
+  
+}
+.pass_icon{
+  position: relative !important;
+  z-index: 1000 !important;
+}
+.FontAwesomeIcon{
+  z-index:900 !important;
+  position: absolute !important;
+  right: 600px !important;
+  bottom: 15px !important;
+}
+
+  
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
