@@ -2,7 +2,7 @@ import { icon } from '@fortawesome/fontawesome-svg-core';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { Component } from "react";
-
+import { CircularProgress } from '@mui/material';
 
 import axios from 'axios';
 import { CellWifi, CleaningServices } from '@mui/icons-material';
@@ -16,20 +16,22 @@ class Registration extends Component {
       password: "",
       confirmpassword: "",
       isPasswordShown: false,
-
+      loading: false,
 
       type: "password",
 
       icon: faEyeSlash,
       icon: faEye,
-
+    
       isError: {
         name: '',
         email: '',
         phone: '',
         password: '',
         confirmpassword: '',
+
       }
+      
 
     }
 
@@ -65,6 +67,9 @@ class Registration extends Component {
   //   icon: faEye,
   // };
 
+ 
+
+
   togglePasswordVisiblity = () => {
 
 
@@ -73,10 +78,7 @@ class Registration extends Component {
     this.setState({ isPasswordShown: !isPasswordShown });
   };
 
-  // state = {
-
-
-  // };
+  
   togglePasswordVisiblitys = () => {
     const { isPasswordShowne } = this.state;
     this.setState({ isPasswordShowne: !isPasswordShowne });
@@ -106,9 +108,8 @@ class Registration extends Component {
           : "Email address is invalid";
         break;
       case "phone":
-
-        isError.phone = value.length < 10 ? " Please enter  the 10 digits  number" : '';
-        break;
+         isError.phone = value.length !== 10 ? " Please enter  the 10 digits  number" :'' ; 
+         break;
       case "password":
         var password_pattern = new RegExp (/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()+=-\?;,./{}|\":<>\[\]\\\' ~_]).{8,}/);
         ;  
@@ -143,10 +144,13 @@ class Registration extends Component {
   };
   submit = (e) => {
     e.preventDefault();
-    let isError = {};
+    //let isError = {};
+    
 
     if (!this.state.name || !this.state.email || !this.state.phone || this.state.password !== this.state.confirmpassword || this.state.phone.length < 10 || !this.state.password || !this.state.confirmpassword) {
       let isError = {};
+    
+
       if (this.state.password !== this.state.confirmpassword) {
      
         isError.confirmpassword = "password and confirm password are not matched";
@@ -168,12 +172,13 @@ class Registration extends Component {
       }
       if (!this.state.password) {
      
-        isError.password = "please enter the passwrd";
+        isError.password = "please enter the password";
       }
       if (!this.state.confirmpassword) {
        
         isError.confirmpassword = "please enter the confirmpassword";
       }
+
 
 
       // if (this.state.password !== this.state.confirmpassword) {
@@ -182,24 +187,28 @@ class Registration extends Component {
       // }
       this.setState({ isError })
     } else {
-
+           
       const { name, phone, email, password } = this.state
       let inputData = {
         name: name,
-        phone: phone,
+        phone: Number(phone),
         email: email,
         password: password,
 
 
       }
       //console.log(inputData);
+      this.setState({
+        loading:true
+      })
+
 
       axios.post(`http://b90f-122-168-80-183.in.ngrok.io/users/register`, inputData)
         .then(res => {
           console.log(res);
           console.log(res.data);
         })
-
+       
     };
 
   }
@@ -338,8 +347,13 @@ class Registration extends Component {
           {/* <span className="invalid-feedback">{isError.confirmpassword.length > 0 && isError.confirmpassword}</span>  */}
 
         </div>
-
-        <button className="btn" onClick={(e) => this.submit(e)} type="submit">Submit</button>
+         
+        <button className="btn" onClick={(e) => this.submit(e)} type="submit"  > 
+        {this.state.loading ?<CircularProgress disableShrink   />:"Submit"}    
+      
+        </button>
+  
+     
       </form>
     )
   }
