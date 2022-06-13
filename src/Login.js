@@ -146,13 +146,7 @@ class Login extends Component {
             <span className="invalid-feedback">{isError.password}</span>
           )}
         </div>
-
-
-
-
-
-
-        <button className="btn" type="submit" onClick={(e) => this.submit(e)}>Sign In</button>
+     <button className="btn" type="submit" onClick={(e) => this.submit(e)}>Sign In</button>
 
       </form>
     )
