@@ -1,7 +1,11 @@
 import { icon } from '@fortawesome/fontawesome-svg-core';
-import {  faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { Component } from "react";
+
+
+import axios from 'axios';
+import { CellWifi, CleaningServices } from '@mui/icons-material';
 class Registration extends Component {
   constructor(props) {
     super(props);
@@ -10,12 +14,14 @@ class Registration extends Component {
       email: '',
       phone: '',
       password: "",
-      confirmpassword: '',
+      confirmpassword: "",
+      isPasswordShown: false,
 
 
       type: "password",
-     
+
       icon: faEyeSlash,
+      icon: faEye,
 
       isError: {
         name: '',
@@ -24,68 +30,75 @@ class Registration extends Component {
         password: '',
         confirmpassword: '',
       }
+
     }
 
   }
-  
-  // // iconClick() {
+
+
+  //  iconClick() {
   // //   // console.warn("ok");
   // //   // console.log(e);
-   
-  // //   if (this.state.type === "password") {
-  // //     this.setState({
-  // //       ...this.state,
-  //      isPasswordShown: false,
-  // //       icon: faEye,
-  // //       type: "text",
-       
-  // //     })
-  // //   } else {
-  // //     this.setState({
-  // //       ...this.state,
-  // //       icon: faEyeSlash,
-  // //       type: "password",
-     
-  // //     })
-  // //   }
-  // //   // console.log(this.state.type)
-  // //  };
-   state = {
-     
-  
-    isPasswordShown: false,
-    icon:faEye,
-  };
+
+  //   if (this.state.type === "password") {
+  //     this.setState({
+  //       ...this.state,
+  // isPasswordShown: false,
+  //       icon: faEye,
+  //       type: "text",
+
+  //     })
+  //   } else {
+  //     this.setState({
+  //       ...this.state,
+  //       icon: faEyeSlash,
+  //       type: "password",
+
+  //     })
+  //   }
+  //   // console.log(this.state.type)
+  //  };
+  // state = {
+
+
+
+  //   icon: faEye,
+  // };
 
   togglePasswordVisiblity = () => {
-    
-   
+
+
     const { isPasswordShown } = this.state;
-   
+
     this.setState({ isPasswordShown: !isPasswordShown });
   };
 
-state={
-  isPasswordShown: false,
+  // state = {
 
-};
-togglePasswordVisiblitys=()=>{
-  const { isPasswordShowne} =this.state;
-  this.setState({isPasswordShowne: !isPasswordShowne});
-};
-   
+
+  // };
+  togglePasswordVisiblitys = () => {
+    const { isPasswordShowne } = this.state;
+    this.setState({ isPasswordShowne: !isPasswordShowne });
+  };
+
   formValChange = e => {
     //console.log(e.target.value);
     //console.log(e.target.name);
     e.preventDefault();
     const { name, value } = e.target;
     let isError = { ...this.state.isError };
+
+
     switch (name) {
       case "name":
+
         isError.name =
-          value.length < 4 ? "Please enter the name" : '';
+          value.length < 3 ? "Please enter the name 3 character" : '';
+
         break;
       case "email":
+
         var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
 
         isError.email = pattern.test(value)
@@ -93,32 +106,128 @@ togglePasswordVisiblitys=()=>{
           : "Email address is invalid";
         break;
       case "phone":
-        isError.phone = value.length < 10 ? " Please enter the number" : '';
+
+        isError.phone = value.length < 10 ? " Please enter  the 10 digits  number" : '';
         break;
-       
       case "password":
+
         isError.password = value.length < 4 ? " Please enter the password" : '';
-      
         break;
-        case "confirmpassword":
-      
-          isError.confirmpassword=value.length < 4 ? "please enter the confirmpassword" :'' 
+      // case "confirmpassword":
+      //   isError.confirmpassword = value.length < 4 ? " Please enter the confirmpassword" : '';
+      //   break;
+      case "confirmpassword":
+
+        //  isError.confirmpassword= value.length < 4 ? " Please enter the confirmpassword" : '';
+        if (this.state.password !== e.target.value) {
+
+          isError.confirmpassword = "password not match..!"
+        } else {
+
+          isError.confirmpassword = ""
+        }
+      // isError.confirmpassword = ""
       default:
         break;
+
     }
     this.setState({
+      ...this.state,
       isError,
       [name]: value
     })
-
   };
-  submit=(e)=>{
-   
+  submit = (e) => {
+    e.preventDefault();
+    let isError = {};
+
+    if (!this.state.name || !this.state.email || !this.state.phone || this.state.password !== this.state.confirmpassword || this.state.phone.length < 10 || !this.state.password || !this.state.confirmpassword) {
+      let isError = {};
+      if (this.state.password !== this.state.confirmpassword) {
+        isError.confirmpassword = "password and confirm password are not matched";
+
+      }
+
+      if (!this.state.name) {
+        isError.name = "please enter the name";
+
+
+      }
+      if (!this.state.phone) {
+        isError.phone = "please enter the phone";
+        // isError.phone = "please enter the phone";
+
+      }
+      if (!this.state.email) {
+        isError.email = "please enter the email";
+      }
+      if (!this.state.password) {
+        isError.password = "please enter the passwrd";
+      }
+      if (!this.state.confirmpassword) {
+        isError.confirmpassword = "please enter the confirmpassword";
+      }
+
+
+      // if (this.state.password !== this.state.confirmpassword) {
+      //     debugger
+      //   isError.confirmpassword = "password not match..!"
+      // }
+      this.setState({ isError })
+    } else {
+
+      const { name, phone, email, password } = this.state
+      let inputData = {
+        name: name,
+        phone: phone,
+        email: email,
+        password: password,
+
+
+      }
+      //console.log(inputData);
+
+      axios.post(`http://b90f-122-168-80-183.in.ngrok.io/users/register`, inputData)
+        .then(res => {
+          console.log(res);
+          console.log(res.data);
+        })
+
+    };
+
   }
+  // if (!this.state.name|| ) {
+  //   isError.name = "please enter the name";
+  //   this.setState({ isError })
+
+  //   //console.log(isError.name);
+  //  if (!this.state.phone) {
+  //     isError.phone = "please enter the phone";
+  //     //console.log(isError.phone);
+  //   }
+  //  if (!this.state.email) {
+  //     isError.email = "please enter the email";
+
+  //   }
+  // if (!this.state.password) {
+  //     isError.password = "please enter the password";
+  //   }
+  //   if (!this.state.confirmpassword) {
+  //     isError.confirmpassword = "please enter the confirmpassword";
+
+  //   }
+  //  if(this.state.password !== this.state.confirmpassword){
+  //     isError.password="please dont match"
+  //   }
+
+
+
+
   render() {
     const { isError } = this.state;
+
     const { isPasswordShown } = this.state;
-    const {isPasswordShowne}= this.state;
+    const { isPasswordShowne } = this.state;
     return (
 
 
@@ -129,84 +238,101 @@ togglePasswordVisiblitys=()=>{
           <label className="label" >Name</label>
           <input type="text"
             id="input"
-            className={isError.name.length > 0 ? "is-invalid form-control" : "form-control"}
+            className={`form-control ${isError.name && "is-invalid"}`}
+            // className={isError.name.length > 0 ? "is-invalid form-control" : "form-control"}
             name="name"
             value={this.state.name}
             onChange={this.formValChange}
             placeholder="    name" />
 
         </div>
-        {isError.name.length > 0 && (
+        {isError?.name &&
           <span className="invalid-feedback">{isError.name}</span>
-        )}
+        }
+        {/* <span className="invalid-feedback">{isError.name.length > 0 && isError.name}</span>  */}
+
+
         <div className='from-group'>
           <label className="label">Phone</label>
           <input type="number" id="input"
             name="phone"
-            className={isError.phone.length > 0 ? "is-invaild form-control" : "form-control"}
+            className={`form-control ${isError.name && "is-invalid"}`}
+
+            // className={isError.phone.length > 0 ? "is-invaild form-control" : "form-control"}
             onChange={this.formValChange}
             value={this.state.phone}
-            placeholder="    phoneNumber" ></input>
+            placeholder="  phoneNumber" ></input>
 
         </div>
-        {isError.phone.length > 0 && (
+        {isError?.phone && (
           <span className="invalid-feedback">{isError.phone}</span>
         )}
+        {/* <span className="invalid-feedback">{isError.phone.length > 0 && isError.phone}</span>  */}
         <div className='from-group'>
           <label className="label">  Email</label>
           <input type="text" id="input" name="email"
-          value={this.state.email}
-            className={isError.email.length > 0 ? "is-invaild form-control" : "form-control"}
+            value={this.state.email}
+            className={`form-control ${isError.email && "is-invalid"}`}
+
+            //className={isError.email.length > 0 ? "is-invaild form-control" : "form-control"}
             placeholder="      email"
             onChange={this.formValChange} />
 
         </div>
-        {isError.email.length > 0 && (
+        {isError?.email && (
           <span className="invalid-feedback">{isError.email}</span>
         )}
+        {/* <span className="invalid-feedback">{isError.email.length > 0 && isError.email}</span>  */}
         <div className='from-group'>
           <div className='pass_icon'>
             <label className="label2">Password</label>
-            
+
             <input type={isPasswordShown ? "text" : "password"}
-           id="input" name="password" placeholder="    password"
-           value={this.state.password}
-              className={isError.password.length > 0 ? "is-invaild form-control" : "form-control"}
+              id="input" name="password" placeholder="    password"
+              value={this.state.password}
+              className={`form-control ${isError.password && "is-invalid"}`}
+
+              //className={isError.password.length > 0 ? "is-invaild form-control" : "form-control"}
               onChange={this.formValChange}
             />
 
 
 
-            <div className='FontAwesomeIcon'   onClick={this.togglePasswordVisiblity} >
-              <FontAwesomeIcon width="20" className='iconShow' icon={this.state.icon} />
+            <div className='FontAwesomeIcon' onClick={this.togglePasswordVisiblity} >
+              <FontAwesomeIcon width="20" className='iconShow' icon={isPasswordShown ? faEyeSlash : faEye} />
             </div>
 
           </div>
-          {isError.password.length > 0 && (
+          {isError?.password && (
             <span className="invalid-feedback">{isError.password}</span>
           )}
+          {/* <span className="invalid-feedback">{isError.password.length > 0 && isError.password}</span>   */}
         </div>
         <div className='from-group'>
           <div className='pass_icon'>
             <label className="label1">Confirm Password</label>
             <input type={isPasswordShowne ? "text" : "password"} id="input" name="confirmpassword" placeholder="    confirm password"
-              className={isError.confirmpassword.length > 0 ? "is-invaild form-control" : "form-control"}
-              
+              //className={isError.confirmpassword.length > 0 ? "is-invaild form-control" : "form-control"}
+              className={`form-control ${isError.confirmpassword && "is-invalid"}`}
+
               onChange={this.formValChange}
             />
-            <div className='FontAwesomeIcon'  onClick={this.togglePasswordVisiblitys}>
-              <FontAwesomeIcon width="20" className='iconShow' icon={this.state.icon} />
-            
+            <div className='FontAwesomeIcon' onClick={this.togglePasswordVisiblitys}>
+              <FontAwesomeIcon width="20" className='iconShow'
+                icon={isPasswordShowne ? faEyeSlash : faEye}
+              />
+
 
             </div>
-           </div>
-          {isError.confirmpassword.length > 0 && (
+          </div>
+          {isError?.confirmpassword && (
             <span className="invalid-feedback">{isError.confirmpassword}</span>
           )}
-         
+          {/* <span className="invalid-feedback">{isError.confirmpassword.length > 0 && isError.confirmpassword}</span>  */}
+
         </div>
 
-        <button className="btn" onClick={(e)=>this.submit(e)} type="submit">Submit</button>
+        <button className="btn" onClick={(e) => this.submit(e)} type="submit">Submit</button>
       </form>
     )
   }
