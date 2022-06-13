@@ -110,9 +110,12 @@ class Registration extends Component {
         isError.phone = value.length < 10 ? " Please enter  the 10 digits  number" : '';
         break;
       case "password":
-        
-      
-      isError.password = value.length < 4 ? " Please enter the password" : '';
+        var password_pattern = new RegExp (/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()+=-\?;,./{}|\":<>\[\]\\\' ~_]).{8,}/);
+        ;  
+        isError.password=password_pattern.test(value)
+        ? ''
+        :"please enter strong password uppercase and lowercase number specialCharacter";
+     // isError.password = value.length < 4 ? " Please enter the password" : '';
         break;
       // case "confirmpassword":
       //   isError.confirmpassword = value.length < 4 ? " Please enter the confirmpassword" : '';
