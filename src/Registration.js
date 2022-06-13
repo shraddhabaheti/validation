@@ -110,14 +110,15 @@ class Registration extends Component {
         isError.phone = value.length < 10 ? " Please enter  the 10 digits  number" : '';
         break;
       case "password":
-
-        isError.password = value.length < 4 ? " Please enter the password" : '';
+        
+      
+      isError.password = value.length < 4 ? " Please enter the password" : '';
         break;
       // case "confirmpassword":
       //   isError.confirmpassword = value.length < 4 ? " Please enter the confirmpassword" : '';
       //   break;
       case "confirmpassword":
-
+       
         //  isError.confirmpassword= value.length < 4 ? " Please enter the confirmpassword" : '';
         if (this.state.password !== e.target.value) {
 
@@ -144,6 +145,7 @@ class Registration extends Component {
     if (!this.state.name || !this.state.email || !this.state.phone || this.state.password !== this.state.confirmpassword || this.state.phone.length < 10 || !this.state.password || !this.state.confirmpassword) {
       let isError = {};
       if (this.state.password !== this.state.confirmpassword) {
+     
         isError.confirmpassword = "password and confirm password are not matched";
 
       }
@@ -162,9 +164,11 @@ class Registration extends Component {
         isError.email = "please enter the email";
       }
       if (!this.state.password) {
+     
         isError.password = "please enter the passwrd";
       }
       if (!this.state.confirmpassword) {
+       
         isError.confirmpassword = "please enter the confirmpassword";
       }
 
@@ -299,7 +303,7 @@ class Registration extends Component {
 
 
             <div className='FontAwesomeIcon' onClick={this.togglePasswordVisiblity} >
-              <FontAwesomeIcon width="20" className='iconShow' icon={isPasswordShown ? faEyeSlash : faEye} />
+              <FontAwesomeIcon width="20" className='iconShow' icon={isPasswordShown ? faEye : faEyeSlash} />
             </div>
 
           </div>
@@ -319,7 +323,7 @@ class Registration extends Component {
             />
             <div className='FontAwesomeIcon' onClick={this.togglePasswordVisiblitys}>
               <FontAwesomeIcon width="20" className='iconShow'
-                icon={isPasswordShowne ? faEyeSlash : faEye}
+                icon={isPasswordShowne ? faEye : faEyeSlash}
               />
 
 

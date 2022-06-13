@@ -34,7 +34,8 @@ class Login extends Component {
           : "Email address is invalid";
         break;
       case "password":
-        isError.password = value.length < 4 ? " Please enter the password" : '';
+       
+        isError.password = value.length < 4 ? " Please enter the password upercase and lower case" : '';
         break;
       default:
         break;
