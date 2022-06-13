@@ -34,8 +34,12 @@ class Login extends Component {
           : "Email address is invalid";
         break;
       case "password":
-       
-        isError.password = value.length < 4 ? " Please enter the password upercase and lower case" : '';
+        var password_pattern = new RegExp (/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()+=-\?;,./{}|\":<>\[\]\\\' ~_]).{8,}/);
+        ;  
+        isError.password=password_pattern.test(value)
+        ? ''
+        :"please enter strong password uppercase and lowercase number specialCharacter";
+        //isError.password = value.length < 4 ? " Please enter the password upercase and lower case" : '';
         break;
       default:
         break;
@@ -139,7 +143,7 @@ class Login extends Component {
 
 
             <div className='FontAwesomeIcon' onClick={this.togglePasswordVisiblity} >
-              <FontAwesomeIcon width="20" className='iconShow' icon={isPasswordShown?faEyeSlash:faEye} />
+              <FontAwesomeIcon width="20" className='iconShow' icon={isPasswordShown?faEye:faEyeSlash} />
             </div>
 
           </div>
