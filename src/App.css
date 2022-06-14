@@ -109,6 +109,20 @@
   bottom: 15px !important;
 }
 
+.FontAwesomeIcon2{
+  z-index:900 !important;
+  position: absolute !important;
+  left: 630px !important;
+  bottom:320px !important;
+  position: fixed;
+}
+.FontAwesomeIcon3{
+  z-index:900 !important;
+  position: absolute !important;
+  left: 630px !important;
+  bottom:240px !important;
+  position: fixed;
+}
   
 
 @media (prefers-reduced-motion: no-preference) {

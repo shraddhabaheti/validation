@@ -6,7 +6,7 @@ import './App.css';
 import Login from './Login';
 import Registration from './Registration';
 
-
+import Reg from './Reg';
 function App() {
   return (
     <div className="App">
@@ -14,6 +14,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Registration/>}></Route>
         <Route path="/login" element={<Login/>}></Route>
+        <Route path="/reg" element={<Reg />}></Route>
       </Routes>
       </BrowserRouter>
      
