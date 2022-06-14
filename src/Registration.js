@@ -1,10 +1,11 @@
 import { icon } from '@fortawesome/fontawesome-svg-core';
-import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { faEye, faEyeSlash, faL } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { Component } from "react";
 import { CircularProgress } from '@mui/material';
 
 import axios from 'axios';
+
 import { CellWifi, CleaningServices } from '@mui/icons-material';
 class Registration extends Component {
   constructor(props) {
@@ -18,11 +19,12 @@ class Registration extends Component {
       isPasswordShown: false,
       loading: false,
 
+
       type: "password",
 
       icon: faEyeSlash,
       icon: faEye,
-    
+
       isError: {
         name: '',
         email: '',
@@ -30,8 +32,9 @@ class Registration extends Component {
         password: '',
         confirmpassword: '',
 
+
       }
-      
+
 
     }
 
@@ -67,7 +70,7 @@ class Registration extends Component {
   //   icon: faEye,
   // };
 
- 
+
 
 
   togglePasswordVisiblity = () => {
@@ -78,7 +81,7 @@ class Registration extends Component {
     this.setState({ isPasswordShown: !isPasswordShown });
   };
 
-  
+
   togglePasswordVisiblitys = () => {
     const { isPasswordShowne } = this.state;
     this.setState({ isPasswordShowne: !isPasswordShowne });
@@ -108,21 +111,21 @@ class Registration extends Component {
           : "Email address is invalid";
         break;
       case "phone":
-         isError.phone = value.length !== 10 ? " Please enter  the 10 digits  number" :'' ; 
-         break;
+        isError.phone = value.length !== 10 ? " Please enter  the 10 digits  number" : '';
+        break;
       case "password":
-        var password_pattern = new RegExp (/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()+=-\?;,./{}|\":<>\[\]\\\' ~_]).{8,}/);
-        ;  
-        isError.password=password_pattern.test(value)
-        ? ''
-        :"please enter strong password uppercase and lowercase number specialCharacter";
-     // isError.password = value.length < 4 ? " Please enter the password" : '';
+        var password_pattern = new RegExp(/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()+=-\?;,./{}|\":<>\[\]\\\' ~_]).{8,}/);
+        ;
+        isError.password = password_pattern.test(value)
+          ? ''
+          : "please enter strong password uppercase and lowercase number specialCharacter";
+        // isError.password = value.length < 4 ? " Please enter the password" : '';
         break;
       // case "confirmpassword":
       //   isError.confirmpassword = value.length < 4 ? " Please enter the confirmpassword" : '';
       //   break;
       case "confirmpassword":
-       
+
         //  isError.confirmpassword= value.length < 4 ? " Please enter the confirmpassword" : '';
         if (this.state.password !== e.target.value) {
 
@@ -145,14 +148,14 @@ class Registration extends Component {
   submit = (e) => {
     e.preventDefault();
     //let isError = {};
-    
+
 
     if (!this.state.name || !this.state.email || !this.state.phone || this.state.password !== this.state.confirmpassword || this.state.phone.length < 10 || !this.state.password || !this.state.confirmpassword) {
       let isError = {};
-    
+
 
       if (this.state.password !== this.state.confirmpassword) {
-     
+
         isError.confirmpassword = "password and confirm password are not matched";
 
       }
@@ -171,11 +174,11 @@ class Registration extends Component {
         isError.email = "please enter the email";
       }
       if (!this.state.password) {
-     
+
         isError.password = "please enter the password";
       }
       if (!this.state.confirmpassword) {
-       
+
         isError.confirmpassword = "please enter the confirmpassword";
       }
 
@@ -186,8 +189,9 @@ class Registration extends Component {
       //   isError.confirmpassword = "password not match..!"
       // }
       this.setState({ isError })
+     
     } else {
-           
+
       const { name, phone, email, password } = this.state
       let inputData = {
         name: name,
@@ -198,20 +202,30 @@ class Registration extends Component {
 
       }
       //console.log(inputData);
-      this.setState({
-        loading:true
-      })
+       this.setState({
+         loading: true
 
 
-      axios.post(`http://b90f-122-168-80-183.in.ngrok.io/users/register`, inputData)
-        .then(res => {
-          console.log(res);
-          console.log(res.data);
+       })
+      axios.post(`https://41b1-122-177-225-67.in.ngrok.io/users/register`, inputData)
+      .then(res => {
+        console.log(res);
+        console.log(res.data);
+        this.setState({
+          loading :false
         })
-       
-    };
+      }).catch(error=>
+        this.setState({
+          error,
+          loading :false
+        }))
 
-  }
+      
+    
+    
+     
+  };
+}
   // if (!this.state.name|| ) {
   //   isError.name = "please enter the name";
   //   this.setState({ isError })
@@ -347,13 +361,15 @@ class Registration extends Component {
           {/* <span className="invalid-feedback">{isError.confirmpassword.length > 0 && isError.confirmpassword}</span>  */}
 
         </div>
-         
-        <button className="btn" onClick={(e) => this.submit(e)} type="submit"  > 
-        {this.state.loading ?<CircularProgress disableShrink   />:"Submit"}    
-      
+
+        <button className="btn" onClick={(e) => this.submit(e)} type="submit"  >
+          {this.state.loading ? <CircularProgress disableShrink /> : "Submit"}
+
+
+
         </button>
-  
-     
+
+
       </form>
     )
   }

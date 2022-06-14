@@ -3,13 +3,14 @@ import { icon } from '@fortawesome/fontawesome-svg-core';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
-
+import { CircularProgress } from '@mui/material';
 class Login extends Component {
   constructor() {
     super();
     this.state = {
       email: '',
       password: '',
+      loding:false,
        isPasswordShown: false,
       type: "password",
       icon: faEyeSlash,
@@ -85,7 +86,10 @@ class Login extends Component {
         password: password
 
       }
-      console.log(inputData);
+      //console.log(inputData);
+      this.setState({
+        loading :true
+      })
       
       axios.post(`http://b90f-122-168-80-183.in.ngrok.io/users/login`, inputData)
         .then(res => {
@@ -151,7 +155,9 @@ class Login extends Component {
             <span className="invalid-feedback">{isError.password}</span>
           )}
         </div>
-     <button className="btn" type="submit" onClick={(e) => this.submit(e)}>Sign In</button>
+     <button className="btn" type="submit" onClick={(e) => this.submit(e)}>
+    { this.state.loding ? <CircularProgress disableShrink />:" Sign In"}   
+      </button>
 
       </form>
     )
