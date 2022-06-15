@@ -5,7 +5,7 @@ import { faEye, faEyeSlash, faL } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { Component } from "react";
 import { CircularProgress } from '@mui/material';
-import {Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -238,17 +238,20 @@ function Reg() {
         let user = await response.json();
         //  console.log("++++++++",user)
           //window.location.reload()
-        setState({
-          loading:false
-          
-        })
+          setTimeout(()=>{
+            setState({
+              loading:false
+              
+            })
+          },2000)
+       
       
         if(response.status === 500){
           
           toast.error(user.message)
           setTimeout(()=>{
             navigate('/login')
-           },3000)
+           },2000)
           
         }
         if(response.status === 200){
@@ -257,14 +260,14 @@ function Reg() {
          //navigate('/login')
          setTimeout(()=>{
           navigate('/login')
-         },3000)
+         },2000)
         
         }
         if( response.status===400){
           toast.error(user.message)
           setTimeout(()=>{
             navigate('/login')
-           },3000)
+           },2000)
           
         }
        
@@ -396,7 +399,7 @@ function Reg() {
            {state.loading ? <CircularProgress disableShrink /> : "Submit"}
            <ToastContainer />
       </button>
-      <Link to="/login">SignIn</Link>
+     
       </form>
 
     </div>

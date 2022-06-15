@@ -89,6 +89,7 @@ class Login extends Component {
       //console.log(inputData);
       this.setState({
         loading :true
+        
       })
       
       axios.post(`http://b90f-122-168-80-183.in.ngrok.io/users/login`, inputData)
@@ -96,12 +97,13 @@ class Login extends Component {
           console.log(res);
           console.log(res.data);
         })
- 
+       // alert(inputData);
+         
 };
 
      
 
-     
+    
  
 
  }

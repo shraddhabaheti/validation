@@ -212,10 +212,13 @@ class Registration extends Component {
       .then(res => {
         console.log(res);
         console.log(res.data);
+setTimeout(()=>{
+  this.setState({
+    loading :false
+  })
 
-        this.setState({
-          loading :false
-        })
+},2000)
+        
       }).catch(error=>
         this.setState({
           error,
@@ -261,6 +264,7 @@ class Registration extends Component {
 
     const { isPasswordShown } = this.state;
     const { isPasswordShowne } = this.state;
+    
     return (
 
 
