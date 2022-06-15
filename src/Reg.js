@@ -9,7 +9,8 @@ import { CircularProgress } from '@mui/material';
 
 
 import axios from 'axios';
-import { toast } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Reg() {
   const apidata = "https://41b1-122-177-225-67.in.ngrok.io/users/register";
@@ -225,7 +226,7 @@ function Reg() {
           loading:true
         })
 
-        let response = await fetch('https://3ffc-122-177-225-67.in.ngrok.io/users/register', {
+        let response = await fetch('https://fa53-122-177-225-67.in.ngrok.io/users/register', {
           method: "post",
           headers: {
             'Content-type': 'application/json; charset=UTF-8',
@@ -234,11 +235,28 @@ function Reg() {
           body: JSON.stringify(inputData)
         });
 
-        let user = response.json();
-        
+
+        let user = await response.json();
+         console.log("++++++++",user
+         )
+      
         setState({
           loading:false
+          
         })
+      
+        if(response.status === 500){
+          
+          toast.error(user.message)
+        }
+        if(response.status === 200){
+      
+          toast.success(user.message)
+        }
+        if( response.status===400){
+          toast.error(user.message)
+        }
+   
       }
 
 
@@ -248,7 +266,9 @@ function Reg() {
         error,
         loading:false
         
+        
       })
+      
     }
 
     // const name =async() =>   {
@@ -268,7 +288,7 @@ function Reg() {
   //   const name =async() =>   {
   //     try{
   //       const res=  await axios.post('https://41b1-122-177-225-67.in.ngrok.io/users/register')
-  //       debugger
+  
   //       console.log(res.data)
   //       setData(res?.data?.data)
   //     }catch(err){
@@ -358,6 +378,7 @@ function Reg() {
         }
         <button className="btn" onClick={(e) => { onSubmit(e) }} type="submit">
            {state.loading ? <CircularProgress disableShrink /> : "Submit"}
+           <ToastContainer />
       </button>
       </form>
 
