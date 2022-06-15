@@ -208,10 +208,11 @@ class Registration extends Component {
 
 
        })
-      axios.post(`https://3ffc-122-177-225-67.in.ngrok.io/users/register`, inputData)
+      axios.post(`https://fa53-122-177-225-67.in.ngrok.io/users/register`, inputData)
       .then(res => {
         console.log(res);
         console.log(res.data);
+
         this.setState({
           loading :false
         })
@@ -222,7 +223,7 @@ class Registration extends Component {
           
         }))
 
-      
+     
     
     
      

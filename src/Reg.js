@@ -5,16 +5,14 @@ import { faEye, faEyeSlash, faL } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { Component } from "react";
 import { CircularProgress } from '@mui/material';
-
-
-
+import {Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function Reg() {
-  const apidata = "https://41b1-122-177-225-67.in.ngrok.io/users/register";
-  const [state, setState] = useState({
+ // const apidata = "https://41b1-122-177-225-67.in.ngrok.io/users/register";
+   const [state, setState] = useState({
     name: '',
     phone: '',
     email: '',
@@ -37,6 +35,7 @@ function Reg() {
     password: '',
     confirmpassword: "",
   })
+  const navigate=useNavigate();
   //const [data, setData] = useState([])
 
   // let togglePasswordVisiblity = ()=>{
@@ -237,9 +236,8 @@ function Reg() {
 
 
         let user = await response.json();
-         console.log("++++++++",user
-         )
-      
+        //  console.log("++++++++",user)
+          //window.location.reload()
         setState({
           loading:false
           
@@ -248,28 +246,46 @@ function Reg() {
         if(response.status === 500){
           
           toast.error(user.message)
+          setTimeout(()=>{
+            navigate('/login')
+           },3000)
+          
         }
         if(response.status === 200){
       
           toast.success(user.message)
+         //navigate('/login')
+         setTimeout(()=>{
+          navigate('/login')
+         },3000)
+        
         }
         if( response.status===400){
           toast.error(user.message)
+          setTimeout(()=>{
+            navigate('/login')
+           },3000)
+          
         }
-   
+       
       }
-
+     
 
 
     } catch (error) {
       setState({
         error,
-        loading:false
+        loading:false,
+     
         
         
       })
-      
-    }
+    
+    };
+    //navigate('/login')
+   
+  }
+ 
 
     // const name =async() =>   {
     //   try{
@@ -283,7 +299,7 @@ function Reg() {
 
     // }         
     // name()  
-  }
+  
   // useEffect(()=>{
   //   const name =async() =>   {
   //     try{
@@ -331,14 +347,14 @@ function Reg() {
         <p id="id2">Create an Account</p>
         <div className='from-group'>
           <label className="label" >Name</label>
-          <input type="text" id="input" name="name" placeholder="    name" className={`form-control ${error.name && "is-invalid"}`} value={state.name} onChange={(e) => { handleChange(e) }} />
+          <input type="text" id="input" name="name" placeholder="name" className={`form-control ${error.name && "is-invalid"}`} value={state.name} onChange={(e) => { handleChange(e) }} />
         </div>
         {error?.name &&
           <span className="invalid-feedback">{error.name}</span>
         }
         <div className='from-group'>
           <label className="label" >phone</label>
-          <input type="number" id="input" name="phone" placeholder="    phone" className={`form-control ${error.name && "is-invalid"}`} value={state.phone} onChange={(e) => { handleChange(e) }} />
+          <input type="number" id="input" name="phone" placeholder="phone" className={`form-control ${error.name && "is-invalid"}`} value={state.phone} onChange={(e) => { handleChange(e) }} />
         </div>
         {error?.phone &&
           <span className="invalid-feedback">{error.phone}</span>
@@ -380,6 +396,7 @@ function Reg() {
            {state.loading ? <CircularProgress disableShrink /> : "Submit"}
            <ToastContainer />
       </button>
+      <Link to="/login">SignIn</Link>
       </form>
 
     </div>
