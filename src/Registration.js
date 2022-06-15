@@ -7,6 +7,7 @@ import { CircularProgress } from '@mui/material';
 import axios from 'axios';
 
 import { CellWifi, CleaningServices } from '@mui/icons-material';
+import { toast } from 'react-toastify';
 class Registration extends Component {
   constructor(props) {
     super(props);
@@ -207,7 +208,7 @@ class Registration extends Component {
 
 
        })
-      axios.post(`https://41b1-122-177-225-67.in.ngrok.io/users/register`, inputData)
+      axios.post(`https://3ffc-122-177-225-67.in.ngrok.io/users/register`, inputData)
       .then(res => {
         console.log(res);
         console.log(res.data);
@@ -218,6 +219,7 @@ class Registration extends Component {
         this.setState({
           error,
           loading :false
+          
         }))
 
       
