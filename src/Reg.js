@@ -11,8 +11,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function Reg() {
- // const apidata = "https://41b1-122-177-225-67.in.ngrok.io/users/register";
-   const [state, setState] = useState({
+  const [state, setState] = useState({
     name: '',
     phone: '',
     email: '',
@@ -236,8 +235,7 @@ function Reg() {
 
 
         let user = await response.json();
-        //  console.log("++++++++",user)
-          //window.location.reload()
+      
           setTimeout(()=>{
             setState({
               loading:false
@@ -250,7 +248,7 @@ function Reg() {
           
           toast.error(user.message)
           setTimeout(()=>{
-            navigate('/loginf')
+            navigate('/login')
            },2000)
           
         }
@@ -342,9 +340,9 @@ function Reg() {
 
 
   return (
-
+  
     <div>
-
+  
       <form onSubmit={onSubmit} noValidate >
         <h1 id="id">Shraddha<sub id="id1">Baheti</sub></h1>
         <p id="id2">Create an Account</p>
@@ -399,7 +397,7 @@ function Reg() {
            {state.loading ? <CircularProgress disableShrink /> : "Submit"}
            <ToastContainer />
       </button>
-     
+    
       </form>
 
     </div>

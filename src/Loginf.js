@@ -20,9 +20,7 @@ function Loginf() {
     type: "password",
     isPasswordShown: false,
     loading: false
-
-
-  })
+})
   const [error, setError] = useState({
     email: "",
     password: '',
@@ -30,19 +28,15 @@ function Loginf() {
   })
   const navigate = useNavigate();
   const togglePasswordVisiblity = () => {
-
-    const { isPasswordShown } = state;
-
-    setState({ ...state, isPasswordShown: !isPasswordShown });
+   const { isPasswordShown } = state;
+  setState({ ...state, isPasswordShown: !isPasswordShown });
   };
-
-  const handleChanges = (e) => {
+   const handleChanges = (e) => {
     let name = e.target.name;
     let value = e.target.value;
 
     if (name === "email") {
-
-      var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+    var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
       if (!pattern.test(value)) {
 
         // ["email"] = "Please enter valid email address.";
@@ -125,7 +119,9 @@ function Loginf() {
 
 
         let user = await response.json();
-        localStorage.setItem("token", user.data.token);
+        //  console.log("++++++++",user)
+        //window.location.reload()
+            localStorage.setItem("token", user.data.token);
 
         setTimeout(() => {
           setState({
