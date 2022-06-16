@@ -8,7 +8,10 @@ import axios from 'axios';
 
 import { CellWifi, CleaningServices } from '@mui/icons-material';
 import { toast } from 'react-toastify';
+import { Navigate } from 'react-router-dom';
+import {WithRouter} from '../src/WithRouter'
 class Registration extends Component {
+  
   constructor(props) {
     super(props);
     this.state = {
@@ -38,6 +41,7 @@ class Registration extends Component {
 
 
     }
+  
 
   }
 
@@ -190,7 +194,7 @@ class Registration extends Component {
       //   isError.confirmpassword = "password not match..!"
       // }
       this.setState({ isError })
-     
+
     } else {
 
       const { name, phone, email, password } = this.state
@@ -203,34 +207,34 @@ class Registration extends Component {
 
       }
       //console.log(inputData);
-       this.setState({
-         loading: true
+      this.setState({
+        loading: true
 
 
-       })
-      axios.post(`https://fa53-122-177-225-67.in.ngrok.io/users/register`, inputData)
-      .then(res => {
-        console.log(res);
-        console.log(res.data);
-     setTimeout(()=>{
-       this.setState({
-       loading :false
-     })
-},2000)
-        
-      }).catch(error=>
-        this.setState({
-          error,
-          loading :false
+      })
+      axios.post(`https://0aa6-122-177-225-67.in.ngrok.io/users/register`, inputData)
+        .then(res => {
+          console.log(res);
+          console.log(res.data);
+          setTimeout(() => {
+            this.setState({
+              loading: false
+
+            })
+          }, 2000)
+          this.props.navigate('/loginc')
+
+        }).catch(error =>
+          this.setState({
+            error,
+            loading: false
+
+          }))
+
+    };
+
           
-        }))
-
-     
-    
-    
-     
-  };
-}
+  }
   // if (!this.state.name|| ) {
   //   isError.name = "please enter the name";
   //   this.setState({ isError })
@@ -263,7 +267,7 @@ class Registration extends Component {
 
     const { isPasswordShown } = this.state;
     const { isPasswordShowne } = this.state;
-    
+
     return (
 
 
@@ -381,4 +385,4 @@ class Registration extends Component {
   }
 }
 
-export default Registration;
+export default  WithRouter(Registration);

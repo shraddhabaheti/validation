@@ -3,14 +3,15 @@ import { icon } from '@fortawesome/fontawesome-svg-core';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
+import {WithRouter} from '../src/WithRouter'
 import { CircularProgress } from '@mui/material';
 class Login extends Component {
   constructor() {
     super();
     this.state = {
-      email: '',
-      password: '',
-      loding: false,
+       email: '',
+       password: '',
+       loding: false,
       isPasswordShown: false,
       type: "password",
       icon: faEyeSlash,
@@ -81,8 +82,10 @@ class Login extends Component {
           localStorage.setItem("token", res.data.data.token);
           console.log(res);
           console.log(res.data);
+          this.props.navigate('/homes')
         })
      };
+     
  }
   render() {
     const { isError } = this.state;
@@ -130,4 +133,4 @@ class Login extends Component {
 
   }
 }
-export default Login;
+export default WithRouter(Login);
