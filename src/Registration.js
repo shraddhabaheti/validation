@@ -212,11 +212,10 @@ class Registration extends Component {
       .then(res => {
         console.log(res);
         console.log(res.data);
-setTimeout(()=>{
-  this.setState({
-    loading :false
-  })
-
+     setTimeout(()=>{
+       this.setState({
+       loading :false
+     })
 },2000)
         
       }).catch(error=>

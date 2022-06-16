@@ -79,6 +79,8 @@ class Login extends Component {
     }
     else{
       const { email, password } = this.state
+      
+
       let inputData = {
       
         
@@ -92,9 +94,10 @@ class Login extends Component {
         
       })
       
-      axios.post(`http://b90f-122-168-80-183.in.ngrok.io/users/login`, inputData)
+      axios.post(`http://192.168.1.6:4000/users/login`, inputData)
         .then(res => {
-          console.log(res);
+          localStorage.setItem("token", res.data.data.token);
+           console.log(res);
           console.log(res.data);
         })
        // alert(inputData);

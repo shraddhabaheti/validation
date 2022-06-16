@@ -225,7 +225,7 @@ function Reg() {
           loading:true
         })
 
-        let response = await fetch('https://fa53-122-177-225-67.in.ngrok.io/users/register', {
+        let response = await fetch('http://192.168.1.6:4000/users/register', {
           method: "post",
           headers: {
             'Content-type': 'application/json; charset=UTF-8',
@@ -250,7 +250,7 @@ function Reg() {
           
           toast.error(user.message)
           setTimeout(()=>{
-            navigate('/login')
+            navigate('/loginf')
            },2000)
           
         }

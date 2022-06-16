@@ -123,7 +123,9 @@
   bottom:240px !important;
   position: fixed;
 }
-  
+.FontAwesomeIcon4{
+ top: 50%;
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
