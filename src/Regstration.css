@@ -58,6 +58,7 @@
     z-index:900 !important;
     position: absolute !important;
    right:1390px !important;
+   margin-left:300px;
     bottom: -80px !important;
     position: fixed;
    width: 20px !important;
@@ -65,6 +66,8 @@
   .FontAwesomeIcon2{
     z-index:900 !important;
     position: absolute !important;
+    cursor: pointer;
+    margin-left:300px;
     right: 100px !important;
     bottom: 1px !important;
     width: 20px !important;

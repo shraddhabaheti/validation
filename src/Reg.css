@@ -56,17 +56,19 @@
   .FontAwesomeIcon6{
     z-index:900 !important;
     position: absolute !important;
-    right: 610px !important;
-  
-
-    bottom: 206px !important;
+    right: 590px !important;
+  cursor: pointer;
+    bottom: 8px;
+ 
     position: fixed;
   }
   .FontAwesomeIcon7{
     z-index:900 !important;
     position: absolute !important;
-    right: 610px !important;
-    top: 458px !important;
+     bottom: 8px !important;
+     cursor: pointer;
+   margin-left: 900px;
+ 
     position: fixed;
   }
   

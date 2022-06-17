@@ -58,7 +58,8 @@
   .FontAwesomeIcon4{
     z-index:900 !important;
     position: absolute !important;
-    left: 890px !important;
+    margin-left:280px;
+    cursor: pointer;
     bottom: 165px !important;
     width: 20px !important;
     position: fixed;
