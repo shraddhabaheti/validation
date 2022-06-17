@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 import {WithRouter} from '../src/WithRouter'
 import { CircularProgress } from '@mui/material';
+import  './LoginF.css';
 class Login extends Component {
   constructor() {
     super();
@@ -97,8 +98,8 @@ class Login extends Component {
         <h1 id="id">Shraddha<sub id="id1">Baheti</sub></h1>
         <p className="label3">Welcome Back !</p>
         <div className='from-group'>
-          <label className="label">  Email</label>
-              <input type="text" id="input" name="email"
+          <label className="labels">  Email</label>
+              <input type="text" id="input1" name="email"
                value={this.state.email}
                 className={isError.email.length > 0 ? "is-invaild form-control" : "form-control"}
                placeholder="      email"
@@ -109,15 +110,15 @@ class Login extends Component {
         )}
  <div className='from-group'>
           <div className='pass_icon'>
-             <label className="label2">Password</label>
+             <label className="labels">Password</label>
 
              <input type={isPasswordShown ? "text" : "password"}
-              id="input" name="password" placeholder="    password"
+              id="input1" name="password" placeholder="    password"
               value={this.state.password}
               className={isError.password.length > 0 ? "is-invaild form-control" : "form-control"}
               onChange={this.formValChange}
             />
-    <div className='FontAwesomeIcon' onClick={this.togglePasswordVisiblity} >
+    <div className='FontAwesomeIcon5' onClick={this.togglePasswordVisiblity} >
               <FontAwesomeIcon width="20" className='iconShow' icon={isPasswordShown ? faEye : faEyeSlash} />
             </div>
     </div>
@@ -125,7 +126,7 @@ class Login extends Component {
             <span className="invalid-feedback">{isError.password}</span>
           )}
         </div>
-        <button className="btn" type="submit" onClick={(e) => this.submit(e)}>
+        <button className="btn4" type="submit" onClick={(e) => this.submit(e)}>
           {this.state.loding ? <CircularProgress disableShrink /> : " Sign In"}
         </button> 
         </form>

@@ -11,10 +11,10 @@ function Home(){
     return(
         <div>
             
-         <p className="label3">Welcome To Home page!</p>
+         <p className="label3">Welcome To Home page function Component!</p>
          <button className="btn" onClick={()=>{
         localStorage.removeItem('token')
-        navigate('/login')
+             navigate('/login')
             }}>Logout</button>
         
         </div>

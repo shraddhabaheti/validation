@@ -30,7 +30,7 @@
   
   font-family:'Times New Roman', Times, serif;
   font-style: Bold;
-  margin-right: 280px;
+  margin-right: 1280px;
   padding: 5px;
 }
 .label1{
@@ -38,7 +38,8 @@
   
   font-size: 20px;
   display: block;
-  margin-right: 195px;
+  margin-right: 500px;
+ 
   font-family:'Times New Roman', Times, serif;
   font-style: Bold;
   
@@ -49,7 +50,7 @@
   
   font-size: 20px;
   display: block;
-  margin-right: 250px;
+  margin-right: 1250px;
   font-family:'Times New Roman', Times, serif;
   font-style: Bold;
   
@@ -72,11 +73,23 @@
   padding:3px;
   height: 30px;
   width: 340px;
-  margin-left:12px;
+  margin-right:1200px;
   
   border: 1px solid black;
   padding: 5px;
   margin: 2px;
+}
+#input1{
+  border-radius: 25px;
+  padding:3px;
+  height: 30px;
+  width: 340px;
+  margin-right:1200px;
+  
+  border: 1px solid black;
+  padding: 5px;
+  margin: 2px;
+
 }
 .invalid-feedback{
   color: red;
@@ -128,15 +141,15 @@ right: 200px;
 .FontAwesomeIcon2{
   z-index:900 !important;
   position: absolute !important;
-  left: 630px !important;
-  bottom:320px !important;
+  left: 600px !important;
+  bottom: 315px !important;
   position: fixed;
 }
 .FontAwesomeIcon3{
   z-index:900 !important;
   position: absolute !important;
-  left: 630px !important;
-  bottom:240px !important;
+  left: 600px !important;
+  bottom: 235px !important;
   position: fixed;
 }
 .FontAwesomeIcon4{

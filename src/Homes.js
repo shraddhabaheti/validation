@@ -2,22 +2,18 @@ import { Home } from "@mui/icons-material";
 import { Component, useEffect } from "react";
 import {WithRouter} from '../src/WithRouter'
 class Homes extends Component {
-    
-    componentDidMount(){
+   componentDidMount(){
         if(!localStorage.getItem('token')){
             this.props.navigate('/loginc')
         }
-    }
-    
-    render(){
-       
-      
-        return(
+}
+  render(){
+         return(
             <div>
-                <p className="label3">Welcome To Home page!</p>
+                <p className="label3">Welcome To Home page class Component !</p>
          <button className="btn" onClick={()=>{
-        localStorage.removeItem('token')
-        this.props.navigate('/loginc')
+         localStorage.removeItem('token')
+            this.props.navigate('/loginc')
             }}>Logout</button>
        
 

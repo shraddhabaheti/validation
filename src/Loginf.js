@@ -1,4 +1,4 @@
-import './App.css';
+//import './App.css';
 import { useState, useEffect } from 'react';
 import { icon } from '@fortawesome/fontawesome-svg-core';
 import { faEye, faEyeSlash, faL } from '@fortawesome/free-solid-svg-icons';
@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import  './Login.css';
 function Loginf() {
   const [state, setState] = useState({
     email: "",
@@ -173,26 +173,27 @@ function Loginf() {
 
   }
 
-
+  console.log(error)
 
   return (
+    
     <div>
       
-      <form onSubmit={onSubmit} noValidate >
+      <form onSubmit={onSubmit} noValidate  >
 
         <h1 id="id">Shraddha<sub id="id1">Baheti</sub></h1>
         <p className="label3">Welcome Back !</p>
         <div className='from-group'>
-          <label className="label" >Email</label>
-          <input type="text" id="input" name="email" placeholder="email" className={`form-control ${error.name && "is-invalid"}`} value={state.email} onChange={(e) => { handleChanges(e) }} />
+          <label className="labels" >Email</label>
+          <input type="text" id="input1" name="email" placeholder="email" className={`form-control ${error.name && "is-invalid"}`} value={state.email} onChange={(e) => { handleChanges(e) }} />
         </div>
         {error?.email &&
           <span className="invalid-feedback">{error.email}</span>
         }
         <div className='form-group'>
-          <label className="label2">Password</label>
+          <label className="labels">Password</label>
 
-          <input type={state.isPasswordShown ? "text" : "password"} id="input" name="password" placeholder="    password" className={`form-control ${error.name && "is-invalid"}`} value={state.password} onChange={(e) => { handleChanges(e) }} />
+          <input type={state.isPasswordShown ? "text" : "password"} id="input1" name="password" placeholder="    password" className={`form-control ${error.name && "is-invalid"}`} value={state.password} onChange={(e) => { handleChanges(e) }} />
           <div className='FontAwesomeIcon4' onClick={() => { togglePasswordVisiblity() }} >
             <FontAwesomeIcon width="20" className='iconShow' icon={state.isPasswordShown ? faEye : faEyeSlash} />
           </div>
@@ -201,7 +202,7 @@ function Loginf() {
         {error?.password &&
           <span className="invalid-feedback">{error.password}</span>
         }
-        <button className="btn" onClick={(e) => { onSubmit(e) }} type="submit">
+        <button className="btn4" onClick={(e) => { onSubmit(e) }} type="submit">
           {state.loading ? <CircularProgress disableShrink /> : "Submit"}
           <ToastContainer />
         </button>

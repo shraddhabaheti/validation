@@ -1,4 +1,4 @@
-import './App.css';
+import './Regstration.css';
 import { useState, useEffect } from 'react';
 import { icon } from '@fortawesome/fontawesome-svg-core';
 import { faEye, faEyeSlash, faL } from '@fortawesome/free-solid-svg-icons';
@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
 
 function Reg() {
   const [state, setState] = useState({
@@ -338,7 +339,7 @@ function Reg() {
   //       fetchFunction()
   // }
 
-
+  console.log("error",error)
   return (
   
     <div>
@@ -347,30 +348,30 @@ function Reg() {
         <h1 id="id">Shraddha<sub id="id1">Baheti</sub></h1>
         <p id="id2">Create an Account</p>
         <div className='from-group'>
-          <label className="label" >Name</label>
-          <input type="text" id="input" name="name" placeholder="name" className={`form-control ${error.name && "is-invalid"}`} value={state.name} onChange={(e) => { handleChange(e) }} />
+          <label className="labels" >Name</label>
+          <input type="text" id="input1" name="name" placeholder="name" className={`form-control ${error.name && "is-invalid"}`} value={state.name} onChange={(e) => { handleChange(e) }} />
         </div>
         {error?.name &&
           <span className="invalid-feedback">{error.name}</span>
         }
         <div className='from-group'>
-          <label className="label" >phone</label>
-          <input type="number" id="input" name="phone" placeholder="phone" className={`form-control ${error.name && "is-invalid"}`} value={state.phone} onChange={(e) => { handleChange(e) }} />
+          <label className="labels" >phone</label>
+          <input type="number" id="input1" name="phone" placeholder="phone" className={`form-control ${error.name && "is-invalid"}`} value={state.phone} onChange={(e) => { handleChange(e) }} />
         </div>
         {error?.phone &&
           <span className="invalid-feedback">{error.phone}</span>
         }
         <div className='from-group'>
-          <label className="label" >Email</label>
-          <input type="text" id="input" name="email" placeholder="    email" className={`form-control ${error.name && "is-invalid"}`} value={state.email} onChange={(e) => { handleChange(e) }} />
+          <label className="labels" >Email</label>
+          <input type="text" id="input1" name="email" placeholder="    email" className={`form-control ${error.name && "is-invalid"}`} value={state.email} onChange={(e) => { handleChange(e) }} />
         </div>
         {error?.email &&
           <span className="invalid-feedback">{error.email}</span>
         }
         <div className='form-group'>
-          <label className="label2">Password</label>
+          <label className="labels">Password</label>
 
-          <input type={state.isPasswordShown ? "text" : "password"} id="input" name="password" placeholder="    password" className={`form-control ${error.name && "is-invalid"}`} value={state.password} onChange={(e) => { handleChange(e) }} />
+          <input type={state.isPasswordShown ? "text" : "password"} id="input1" name="password" placeholder="    password" className={`form-control ${error.name && "is-invalid"}`} value={state.password} onChange={(e) => { handleChange(e) }} />
           <div className='FontAwesomeIcon2' onClick={() => { togglePasswordVisiblity() }} >
             <FontAwesomeIcon width="20" className='iconShow' icon={state.isPasswordShown ? faEye : faEyeSlash} />
           </div>
@@ -382,8 +383,8 @@ function Reg() {
         <div className='form-group'>
 
 
-          <label className="label1">Confirm Password</label>
-          <input type={state.isPasswordShowne ? "text" : "password"} id="input" name="confirmpassword" placeholder="    confirm password" className="inputs" value={state.confirmpassword} onChange={(e) => { handleChange(e) }} />
+          <label className="labels">Confirm Password</label>
+          <input type={state.isPasswordShowne ? "text" : "password"} id="input1" name="confirmpassword" placeholder="    confirm password" className="inputs" value={state.confirmpassword} onChange={(e) => { handleChange(e) }} />
 
           <div className='FontAwesomeIcon3' onClick={() => { togglePasswordVisiblitys() }} >
             <FontAwesomeIcon width="20" className='iconShow' icon={state.isPasswordShowne ? faEye : faEyeSlash} />
@@ -393,7 +394,7 @@ function Reg() {
         {error?.confirmpassword &&
           <span className="invalid-feedback">{error.confirmpassword}</span>
         }
-        <button className="btn" onClick={(e) => { onSubmit(e) }} type="submit">
+        <button className="btn4" onClick={(e) => { onSubmit(e) }} type="submit">
            {state.loading ? <CircularProgress disableShrink /> : "Submit"}
            <ToastContainer />
       </button>

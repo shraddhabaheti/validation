@@ -3,15 +3,15 @@ import { faEye, faEyeSlash, faL } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { Component } from "react";
 import { CircularProgress } from '@mui/material';
-
+import './Reg.css';
 import axios from 'axios';
 
 import { CellWifi, CleaningServices } from '@mui/icons-material';
 import { toast } from 'react-toastify';
 import { Navigate } from 'react-router-dom';
-import {WithRouter} from '../src/WithRouter'
+import { WithRouter } from '../src/WithRouter'
 class Registration extends Component {
-  
+
   constructor(props) {
     super(props);
     this.state = {
@@ -41,7 +41,7 @@ class Registration extends Component {
 
 
     }
-  
+
 
   }
 
@@ -159,11 +159,7 @@ class Registration extends Component {
       let isError = {};
 
 
-      if (this.state.password !== this.state.confirmpassword) {
 
-        isError.confirmpassword = "password and confirm password are not matched";
-
-      }
 
       if (!this.state.name) {
         isError.name = "please enter the name";
@@ -186,7 +182,11 @@ class Registration extends Component {
 
         isError.confirmpassword = "please enter the confirmpassword";
       }
+      if (this.state.password !== this.state.confirmpassword) {
 
+        isError.confirmpassword = "password and confirm password are not matched";
+
+      }
 
 
       // if (this.state.password !== this.state.confirmpassword) {
@@ -212,7 +212,7 @@ class Registration extends Component {
 
 
       })
-      axios.post(`https://0aa6-122-177-225-67.in.ngrok.io/users/register`, inputData)
+      axios.post(`http://192.168.1.6:4000/users/register`, inputData)
         .then(res => {
           console.log(res);
           console.log(res.data);
@@ -233,7 +233,7 @@ class Registration extends Component {
 
     };
 
-          
+
   }
   // if (!this.state.name|| ) {
   //   isError.name = "please enter the name";
@@ -268,16 +268,20 @@ class Registration extends Component {
     const { isPasswordShown } = this.state;
     const { isPasswordShowne } = this.state;
 
+    
+    // console.log("cpass", this.state.isError.confirmpassword)
+
     return (
 
 
       <form onSubmit={this.onSubmit} noValidate>
+
         <h1 id="id">Shraddha<sub id="id1">Baheti</sub></h1>
         <p id="id2">Create an Account</p>
         <div className='from-group'>
-          <label className="label" >Name</label>
+          <label className="labels" >Name</label>
           <input type="text"
-            id="input"
+            id="input1"
             className={`form-control ${isError.name && "is-invalid"}`}
             // className={isError.name.length > 0 ? "is-invalid form-control" : "form-control"}
             name="name"
@@ -293,8 +297,8 @@ class Registration extends Component {
 
 
         <div className='from-group'>
-          <label className="label">Phone</label>
-          <input type="number" id="input"
+          <label className="labels">Phone</label>
+          <input type="number" id="input1"
             name="phone"
             className={`form-control ${isError.name && "is-invalid"}`}
 
@@ -309,9 +313,8 @@ class Registration extends Component {
         )}
         {/* <span className="invalid-feedback">{isError.phone.length > 0 && isError.phone}</span>  */}
         <div className='from-group'>
-          <label className="label">  Email</label>
-          <input type="text" id="input" name="email"
-            value={this.state.email}
+          <label className="labels">  Email</label>
+          <input type="text" id="input1" name="email" value={this.state.email}
             className={`form-control ${isError.email && "is-invalid"}`}
 
             //className={isError.email.length > 0 ? "is-invaild form-control" : "form-control"}
@@ -325,10 +328,10 @@ class Registration extends Component {
         {/* <span className="invalid-feedback">{isError.email.length > 0 && isError.email}</span>  */}
         <div className='from-group'>
           <div className='pass_icon'>
-            <label className="label2">Password</label>
+            <label className="labels">Password</label>
 
             <input type={isPasswordShown ? "text" : "password"}
-              id="input" name="password" placeholder="    password"
+              id="input1" name="password" placeholder="    password"
               value={this.state.password}
               className={`form-control ${isError.password && "is-invalid"}`}
 
@@ -338,7 +341,7 @@ class Registration extends Component {
 
 
 
-            <div className='FontAwesomeIcon' onClick={this.togglePasswordVisiblity} >
+            <div className='FontAwesomeIcon6' onClick={this.togglePasswordVisiblity} >
               <FontAwesomeIcon width="20" className='iconShow' icon={isPasswordShown ? faEye : faEyeSlash} />
             </div>
 
@@ -350,14 +353,14 @@ class Registration extends Component {
         </div>
         <div className='from-group'>
           <div className='pass_icon'>
-            <label className="label1">Confirm Password</label>
-            <input type={isPasswordShowne ? "text" : "password"} id="input" name="confirmpassword" placeholder="    confirm password"
+            <label className="labels">Confirm Password</label>
+            <input type={isPasswordShowne ? "text" : "password"} id="input1" name="confirmpassword" placeholder="    confirm password"
               //className={isError.confirmpassword.length > 0 ? "is-invaild form-control" : "form-control"}
               className={`form-control ${isError.confirmpassword && "is-invalid"}`}
 
               onChange={this.formValChange}
             />
-            <div className='FontAwesomeIcon' onClick={this.togglePasswordVisiblitys}>
+            <div className='FontAwesomeIcon7' onClick={this.togglePasswordVisiblitys}>
               <FontAwesomeIcon width="20" className='iconShow'
                 icon={isPasswordShowne ? faEye : faEyeSlash}
               />
@@ -368,11 +371,12 @@ class Registration extends Component {
           {isError?.confirmpassword && (
             <span className="invalid-feedback">{isError.confirmpassword}</span>
           )}
+
           {/* <span className="invalid-feedback">{isError.confirmpassword.length > 0 && isError.confirmpassword}</span>  */}
 
         </div>
 
-        <button className="btn" onClick={(e) => this.submit(e)} type="submit"  >
+        <button className="btn4" onClick={(e) => this.submit(e)} type="submit"  >
           {this.state.loading ? <CircularProgress disableShrink /> : "Submit"}
 
 
@@ -385,4 +389,4 @@ class Registration extends Component {
   }
 }
 
-export default  WithRouter(Registration);
+export default WithRouter(Registration);

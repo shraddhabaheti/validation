@@ -1,0 +1,64 @@
+.labels{
+    color:#1145ad; 
+  text-align: center;
+  font-size: 20px;
+  display: block;
+  margin-left: 600px;
+ text-align: left;
+  font-family:'Times New Roman', Times, serif;
+  font-style: Bold;
+  
+  padding: 5px;
+}
+#input1{  
+ border-radius: 25px;
+  font-size: 20px;
+  font-family: 'Times New Roman', Times, serif;
+  display: block;
+  padding: 15px;
+  width: 5px;
+  width:340px;
+ 
+ margin-left: 600px;
+ border: 1px solid black;
+    
+   
+    
+  }
+
+  .btn4{
+    color:#1145ad; 
+  background-color: aqua;
+  
+  border-radius: 25px;
+  font-size: 20px;
+  font-family: 'Times New Roman', Times, serif;
+  display: block;
+  padding: 5px;
+  width: 10px;
+  width:340px;
+
+  margin: 10px auto;
+  
+    
+  }
+  .invalid-feedback{
+    color: red;
+    font-family: 'Times New Roman', Times, serif;
+    font-size:15px;
+    margin-right: 120px;
+  }
+  
+  .pass_icon{
+    position: relative !important;
+    z-index: 1000 !important;
+  }
+  .FontAwesomeIcon5{
+    z-index:900 !important;
+    position: absolute !important;
+    right: 630px !important;
+    bottom: 5px !important;
+    position: fixed;
+  }
+  
+  
